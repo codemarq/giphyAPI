@@ -2,51 +2,8 @@ $(document).ready(function () {
 
 	// global variables
 	var topics = ['Archer', 'Green Lantern', 'Fugazi', 'Radiohead', 'Transformers'];
-	// api key
-	var apiKey = "dc6zaTOxFJmzC";
-
-	var tag = '';
-
-	// api endpoint url
-	var queryURL = "http://api.giphy.com/v1/gifs/random?";
-
-	// declare query URL for giphy api with query of cats
-	//  ripped from NYSearch.js have to edit still
-    queryURL += $.param({
-			'api_key': apiKey,
-			'tag' : tag,
-		});
-
-	// helper functions
-
-	// on click handler for button---fix cat button references
-	//dynamically generate buttons
-	// animate and stop gifs--yada yada
-    $('#addTopic').on('click', function() {
-
-        // makes the request for data from url
-        $.ajax({url: queryURL, method: 'GET'})
-
-            // defines what to do with datawhen done
-            .done(function(response) {
-
-                // dump image from response into variable
-                var imageUrl = response.data.image_original_url;
-
-                // create image HTML element with jquery
-                var catImage = $("<img>");
-                
-                // set attributes for source and alt text in img element
-                catImage.attr('src', imageUrl);
-                catImage.attr('alt', 'topic image');
-
-                // dump them to the page
-                $('#images').prepend(catImage);
-            });
-    });
-
-    // ========================================================
-
+	
+	// ========================================================
 	// Generic function for displaying movie data 
 	function renderButtons () { 
 
@@ -54,7 +11,7 @@ $(document).ready(function () {
 		$('#buttonsDiv').empty();
 
 		// Loops through the array of topics
-		for (var i = 0; i < topics.length; i++){
+		for (var i = 0; i < topics.length; i++) {
 
 			// Then dynamicaly generates buttons for each movie in the array
 
@@ -68,9 +25,8 @@ $(document).ready(function () {
 	};
 
 	// ========================================================
-
 	// This function handles events where one button is clicked
-	$('#addTopic').on('click', function(event){
+	$('#addTopic').on('click', function (event) {
 		// prevents page reload if user its enter instead of clicks button
 		event.preventDefault();
 
@@ -81,24 +37,59 @@ $(document).ready(function () {
 		topics.push(topic);
 		
 		// Our array then runs which handles the processing of our topic array
-		renderButtons();
-
-		// We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
-		
-	})
+		renderButtons();	
+	});
 
 	// ========================================================
 
-	// Generic function for displaying the movieInfo
-
-	// $(document).on('click', '.topic', alertMovieName);
-
 
 	// ========================================================
+	// button on-click function
+    function gifFetch () {
+    	// empty the galleryDiv
+    	$('#galleryDiv').empty();
+		// query var will be where the search topic goes
+		var query = $(this).data('name');
+
+		// api endpoint url
+		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+        // makes the request for data from url
+        $.ajax({
+        		url: queryURL, 
+        		method: 'GET'
+       		}).done(function(response) {
+            	// defines what to do with data when done
+            	// console logs 
+            	console.log('queryURL: ' + queryURL);
+            	console.log('Response: ' + response);
+
+            	var results = response.data;
+
+            	for (var i = 0; i < results.length; i++) {
+            		var gifsDiv = $('<div>');
+            	
+            		var p = $('<p>').text("Rating: " + results[i].rating);
+	                // dump image from response into variable
+	                var imageUrl = results[i].images.fixed_height.url;
+
+	                // create image HTML element with jquery
+	                var topicImage = $("<img>");
+	                
+	                // set attributes for source and alt text in img element
+	                topicImage.attr('src', imageUrl);
+	                topicImage.attr('alt', 'topic image');
+
+	                // dump them to the page
+	                $('#galleryDiv').prepend(topicImage);
+            	}
+            });
+    };
+
+    // ========================================================
 
 	// This calls the renderButtons() function
 	renderButtons();
 	// event listeners
-
-
+	$(document).on('click', '.topic', gifFetch);
 });
