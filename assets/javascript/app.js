@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
 	// global variables
-	var topics = ['Superman', 'Batman', 'Wonder Woman', 'Flash', 
-		'Green Lantern', 'Aquaman', 'the Atom', 'Hawkman', 
-		'Martian Manhunter', 'Shazam', 'Batgirl', 'Supergirl'];
+	var topics = ['Superman', 'Batman', 'Wonder Woman', 'The Flash', 
+		'Green Lantern', 'Aquaman', 'The Atom', 'Hawkman', 
+		'Martian Manhunter', 'Zatanna', 'Black Canary', 'Batgirl', 'Supergirl'];
 	
 	// ========================================================
 	// Generic function for displaying movie data 
@@ -40,6 +40,7 @@ $(document).ready(function () {
 		
 		// Our array then runs which handles the processing of our topic array
 		renderButtons();	
+		$('#topicInput').empty();
 	});
 
 	// ========================================================
