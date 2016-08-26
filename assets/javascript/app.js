@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
 	// global variables
-	var topics = ['Archer', 'Green Lantern', 'Fugazi', 'Radiohead', 'Transformers'];
+	var topics = ['Superman', 'Batman', 'Wonder Woman', 'Flash', 
+		'Green Lantern', 'Aquaman', 'the Atom', 'Hawkman', 
+		'Martian Manhunter', 'Shazam', 'Batgirl', 'Supergirl'];
 	
 	// ========================================================
 	// Generic function for displaying movie data 
@@ -87,6 +89,12 @@ $(document).ready(function () {
     };
 
     // ========================================================
+
+	// need to do the animate/pause functions. format css. pick a theme.
+	// also restrict rating and limit size -can generate imgs with col-md-4 class. 
+	// rebuild query URL.
+	// style this thing-DC Comics Theme
+
 
 	// This calls the renderButtons() function
 	renderButtons();
