@@ -55,7 +55,7 @@ $(document).ready(function () {
 		var query = $(this).data('name');
 
 		// api endpoint url
-		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=dc6zaTOxFJmzC&limit=10";
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         // makes the request for data from url
         $.ajax({
@@ -70,21 +70,26 @@ $(document).ready(function () {
             	var results = response.data;
 
             	for (var i = 0; i < results.length; i++) {
-            		var gifsDiv = $('<div>');
-            	
-            		var p = $('<p>').text("Rating: " + results[i].rating);
-	                // dump image from response into variable
-	                var imageUrl = results[i].images.fixed_height.url;
+            		if (results[i].rating == "r" || results[i].rating == "pg-13"){
 
-	                // create image HTML element with jquery
-	                var topicImage = $("<img>");
-	                
-	                // set attributes for source and alt text in img element
-	                topicImage.attr('src', imageUrl);
-	                topicImage.attr('alt', 'topic image');
+            		}
+            		else {
+	            		var gifsDiv = $('<div>'); 
+	            	
+	            		var p = $('<p>').text("Rating: " + results[i].rating);
+		                // dump image from response into variable
+		                var imageUrl = results[i].images.fixed_height.url;
 
-	                // dump them to the page
-	                $('#galleryDiv').prepend(topicImage);
+		                // create image HTML element with jquery
+		                var topicImage = $("<img>");
+		                
+		                // set attributes for source and alt text in img element
+		                topicImage.attr('src', imageUrl);
+		                topicImage.attr('alt', 'topic image');
+
+		                // dump them to the page
+		                $('#galleryDiv').prepend(topicImage);
+		            }
             	}
             });
     };
