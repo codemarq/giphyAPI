@@ -55,7 +55,7 @@ $(document).ready(function () {
 		var query = $(this).data('name');
 
 		// api endpoint url
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=dc6zaTOxFJmzC&limit=10";
+		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + query;
 
         // makes the request for data from url
         $.ajax({
@@ -63,9 +63,6 @@ $(document).ready(function () {
         		method: 'GET'
        		}).done(function(response) {
             	// defines what to do with data when done
-            	// console logs 
-            	console.log('queryURL: ' + queryURL);
-            	console.log('Response: ' + response);
 
             	var results = response.data;
 
@@ -79,13 +76,20 @@ $(document).ready(function () {
 	            		var p = $('<p>').text("Rating: " + results[i].rating);
 		                // dump image from response into variable
 		                var imageUrl = results[i].images.fixed_height.url;
+		                // remove .gif from end 
+		                var urlCut = imageUrl.slice(0, (imageUrl.length - 4));
+		                // add _s.gif to end for still images
+		                var stillImage = urlCut + "_s.gif";
 
 		                // create image HTML element with jquery
-		                var topicImage = $("<img>");
+		                var topicImage = $("<img class='topicImage'>");
 		                
 		                // set attributes for source and alt text in img element
-		                topicImage.attr('src', imageUrl);
+		                topicImage.attr('src', stillImage);
 		                topicImage.attr('alt', 'topic image');
+		                topicImage.attr('data-still', stillImage);
+		                topicImage.attr('data-animate', imageUrl);
+		                topicImage.attr('data-state', 'still');
 
 		                // dump them to the page
 		                $('#galleryDiv').prepend(topicImage);
@@ -96,14 +100,25 @@ $(document).ready(function () {
 
     // ========================================================
 
-	// need to do the animate/pause functions. format css. pick a theme.
-	// also restrict rating and limit size -can generate imgs with col-md-4 class. 
-	// rebuild query URL.
-	// style this thing-DC Comics Theme
-
+    // animate or pause function
+    function animate () {
+    	var state = $(this).attr('data-state'); 
+    	console.log(state);
+    	// animate or pause
+    	if (state == 'still'){
+                $(this).attr('src', $(this).data('animate'));
+                $(this).attr('data-state', 'animate');
+            }else{
+                $(this).attr('src', $(this).data('still'));
+                $(this).attr('data-state', 'still');
+            }
+    };
+	// need to do the animate/pause functions..
+	// -can generate imgs with col-md-4 class.
 
 	// This calls the renderButtons() function
 	renderButtons();
 	// event listeners
 	$(document).on('click', '.topic', gifFetch);
+	$(document).on('click', '.topicImage', animate)
 });
