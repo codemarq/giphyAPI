@@ -65,15 +65,19 @@ $(document).ready(function () {
             	// defines what to do with data when done
 
             	var results = response.data;
+            	var rating = results.rating;
+            	console.log(rating);
 
             	for (var i = 0; i < results.length; i++) {
-            		if (results[i].rating == "r" || results[i].rating == "pg-13"){
+            		if (rating == "r" || rating == "pg-13"){
 
             		}
             		else {
-	            		var gifsDiv = $('<div>'); 
-	            	
-	            		var p = $('<p>').text("Rating: " + results[i].rating);
+	            		var p = $('<p>');
+	            		// p.html("Rating: " + rating);
+
+	            		// $('#galleryDiv').append(p);
+
 		                // dump image from response into variable
 		                var imageUrl = results[i].images.fixed_height.url;
 		                // remove .gif from end 
@@ -113,8 +117,6 @@ $(document).ready(function () {
                 $(this).attr('data-state', 'still');
             }
     };
-	// need to do the animate/pause functions..
-	// -can generate imgs with col-md-4 class.
 
 	// This calls the renderButtons() function
 	renderButtons();
