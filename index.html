@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- superhero bootswatch theme -->
-	<!-- <link rel="stylesheet" type="text/css" href="http://bootswatch.com/superhero/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="http://bootswatch.com/superhero/bootstrap.min.css">
 
 	<!-- style.css -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -20,33 +20,46 @@
 
 </head>
 <body>
-	<header class="container">
-		<h1>Giphy API App</h1>
-		<!-- buttons fill header -->
-		<div class="row" id="buttonsDiv"></div>
-	</header>
-	<section class="container">
-		<div class="row">
-			<!-- gifs fill a gallery on left side of screen -->
-			<div class="col-md-8 col-lg-8" id="galleryDiv">
-				
+	<!-- sticky footer page wrapper -->
+	<div class="page-wrapper">
+		<header class="container">
+			<h1>DC Superheroes Giphy API App</h1>
+			<!-- buttons fill header -->
+			<div class="row" id="buttonsDiv"></div>
+		</header>
+		<section class="container">
+			<div class="row">
+				<!-- gifs fill a gallery on left side of screen -->
+				<div class="col-md-8 col-lg-8" id="galleryDiv">
+					
+				</div>
+				<!-- Form on right side of screen -->
+				<div class="col-md-4 col-lg-4" id="formDiv">
+					<form id="topic" class="form-horizontal">
+						<legend></legend>
+						<form-group>
+							<label for="topicInput" class="col-lg-4 ">Add a Topic</label>
+							<input type="text" id="topicInput" class="col-lg-8" placeholder="add topic"><br>
+						</form-group>
+						<br>
+						<!-- Button to trigger new topic to be added -->
+						<form-group class="col-lg-8 col-lg-offset-4">
+							<button class="button btn btn-primary" type="submit" id="addTopic" value="Add a Topic">Add a Topic</button>
+						</form-group>
+						<br>
+						<br>
+					</form>
+				</div>
 			</div>
-			<!-- Form on right side of screen -->
-			<div class="col-md-4 col-lg-4" id="formDiv">
-				<form id="topic">
-					<label for="topicInput">Add a Topic</label>
-					<input type="text" id="topicInput"><br>
-
-					<!-- Button to trigger new topic to be added -->
-					<input type="submit" id="addTopic" value="Add a Topic">
-				</form>
-			</div>
-		</div>
-		
-	</section>
-	<footer>
-		
+		</section>
+	</div>
+	<!-- footer -->
+	<footer class="footer">	
+		<!-- powered by Giphy logo -->
+		<img src="assets/images/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif">
+		<p>&copy; 2016 John-Mike Marquardt</p>
 	</footer>
+	<!-- load java after html -->
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>

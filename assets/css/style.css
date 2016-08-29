@@ -1,7 +1,19 @@
-body {
-	background-image: url('../images/ross-jla4.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
+body, html {
+	height: 100%;
+}
+
+#formDiv {
+	background-color: #4e5d6c;
+
+}
+.page-wrapper {
+	min-height: 100%;
+	margin-bottom: -100px;
+}
+
+.page-wrapper:after {
+	content: "";
+	display: block;
 }
 
 header {
@@ -11,4 +23,18 @@ header {
 
 img {
 	margin: 10px;
+}
+
+.footer, .section:after {
+	height: 100px;
+}
+
+footer {
+	text-align: center;
+	clear: both;
+}
+
+.button {
+	margin: 1px;
+	margin-bottom: 10px;
 }
