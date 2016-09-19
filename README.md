@@ -11,7 +11,8 @@ giphyAPI project-practice working with json data, querying API's on the giphyapi
 * jQuery
 * Bootstrap
 * Ajax
-* Giphy API !['Powered by Giphy'](assets/images/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif)
+* Giphy API 
+!['Powered by Giphy'](assets/images/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif)
 
 
 ## Author
