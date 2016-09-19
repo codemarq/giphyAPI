@@ -55,7 +55,7 @@ $(document).ready(function () {
 		var query = $(this).data('name');
 
 		// api endpoint url
-		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=" + query;
+		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=20&q=" + query;
 
         // makes the request for data from url
         $.ajax({
